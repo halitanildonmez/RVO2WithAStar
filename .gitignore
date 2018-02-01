@@ -79,3 +79,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Ignore AStar and RVO2 library files
+/Assets/RVO2/
+/Assets/AstarPathfindingProject/
+/Assets/AStarProject/
+
+# Ignore project settings
+/ProjectSettings/
