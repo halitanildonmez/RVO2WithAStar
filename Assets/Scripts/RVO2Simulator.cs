@@ -86,8 +86,7 @@ public class RVO2Simulator : MonoBehaviour {
         }
         catch (System.Exception ex)
         {
-            
-            Debug.Log("Exception: " + ex.Message+ " ---- " + ex.Data + " ---- " + ex.StackTrace);
+            Debug.Log(ex.StackTrace);
         }
     }
 }

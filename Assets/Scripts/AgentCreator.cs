@@ -12,24 +12,10 @@ public class AgentCreator : MonoBehaviour {
     int _amount;
 
     [SerializeField]
-    Transform _agentPosition;
-
-    [SerializeField]
     Transform _targetPosition;
 
-    RVO2Simulator simulator;
-    Seeker agentSeeker;
-
-    List<Vector3> pathNodes = null;
-
     // Use this for initialization
-    IEnumerator Start () {
-
-        simulator = GameObject.FindGameObjectWithTag("RVOSim").GetComponent<RVO2Simulator>();
-        agentSeeker = gameObject.GetComponent<Seeker>();
-        pathNodes = new List<Vector3>();
-
-        yield return StartCoroutine(StartPaths(_prefab));
+    void Start () {
         StartCoroutine(GenerateAgent());
     }
 	
@@ -37,29 +23,6 @@ public class AgentCreator : MonoBehaviour {
 	void Update () {
 	    
 	}
-
-    IEnumerator StartPaths(GameObject go)
-    {
-        agentSeeker = gameObject.GetComponent<Seeker>();
-        var path = agentSeeker.StartPath(go.transform.position, _targetPosition.position, OnPathComplete);
-        yield return StartCoroutine(path.WaitForPath());
-
-    }
-
-    public void OnPathComplete(Path p)
-    {
-        if (p.error) {
-            Debug.Log("" + this.gameObject.name + " ---- -" + p.errorLog);
-        }
-        else {
-            pathNodes = p.vectorPath;
-        }
-    }
-
-    public List<Vector3> getPathNodes()
-    {
-        return pathNodes;
-    }
 
     IEnumerator GenerateAgent()
     {
